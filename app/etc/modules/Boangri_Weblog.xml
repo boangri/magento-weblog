@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Config file 
+ *
+ * @category Cyberhull
+ * @package Boangri_Weblog
+ * @copyright Copyright (c) 2014 Cyberhull LLC (www.cyberhull.com)
+ * @author Boris Gribovskiy (boris.gribovskiy@cyberhull.com)
+ */
+ -->
+ <config>
+    <modules>
+        <Boangri_Weblog>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Boangri_Weblog>
+    </modules>
+</config> 

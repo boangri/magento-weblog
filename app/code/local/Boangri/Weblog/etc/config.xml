@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Config file 
+ *
+ * @category Cyberhull
+ * @package Boangri_Weblog
+ * @copyright Copyright (c) 2014 Cyberhull LLC (www.cyberhull.com)
+ * @author Boris Gribovskiy (boris.gribovskiy@cyberhull.com)
+ */
+ -->
+ <config> 
+      
+    <modules>
+        <Boangri_Weblog>
+            <version>0.0.1</version>
+        </Boangri_Weblog>
+    </modules>
+    
+    <global>
+        <models>
+            <weblog>
+                <class>Boangri_Weblog_Model</class>
+                <resourceModel>weblog_resource</resourceModel>
+            </weblog>
+            <weblog_resource>
+                <class>Boangri_Weblog_Model_Resource</class>
+                <entities>
+                    <blogpost>
+                        <table>blog_posts</table>
+                    </blogpost>
+                </entities>
+            </weblog_resource>
+        </models>
+        <resources>
+            <weblog_setup>
+                <setup>
+                    <module>Boangri_Weblog</module>
+                    <class>Boangri_Weblog_Model_Resource_Setup</class>
+                </setup>
+            </weblog_setup>
+        </resources>
+        <helpers>
+            <weblog>
+                <class>Boangri_Weblog_Helper</class>
+            </weblog>
+        </helpers>
+        <blocks>
+            <weblog>
+                <class>Boangri_Weblog_Block</class>
+            </weblog>
+        </blocks>
+    </global>
+    
+    <frontend>
+        <routers>
+            <weblog>
+                <use>standard</use>
+                <args>
+                    <module>Boangri_Weblog</module>
+                    <frontName>weblog</frontName>
+                </args>
+            </weblog>
+        </routers>  
+    </frontend>
+    
+    <adminhtml>
+        <!--
+        <menu>
+            <weblog module="weblog">
+                <title>Weblog</title>
+                <sort_order>71</sort_order>              
+                <children>
+                    <items module="weblog">
+                        <title>Manage Posts</title>
+                        <sort_order>0</sort_order>
+                    <action>adminhtml/weblog</action>
+                    </items>
+                </children>
+            </weblog>
+        </menu>
+        -->
+        <menu>
+            <boangri translate="title" module="weblog">
+                <title>Boangri Modules</title>
+                <sort_order>95</sort_order>
+                <children>
+                    <!--
+                    <yandexmetrika>
+                        <title>Yandex Metrika</title>
+                        <sort_order>1</sort_order>
+                        <action>adminhtml/yandexmetrika/index</action>
+                    </yandexmetrika>
+                    
+                    <item2>
+                        <title>Weblog</title>
+                        <sort_order>2</sort_order>
+                        <action>adminhtml/weblog/index</action>
+                    </item2>
+                    -->
+                    <item2>
+                        <title>Weblog</title>
+                        <sort_order>2</sort_order>
+                        <children>
+                            <item1>
+                                <title>Add new post</title>
+                                <sort_order>2</sort_order>
+                                <action>adminhtml/weblog/new</action>
+                            </item1>
+                            <item2>
+                                <title>Manage posts</title>
+                                <sort_order>1</sort_order>
+                                <action>adminhtml/weblog/index</action>
+                            </item2>
+                        </children>
+                    </item2>
+                </children>
+            </boangri>
+        </menu>
+
+        <acl>
+            <resources>
+                <all>
+                    <title>Allow Everything</title>
+                </all>
+                <admin>
+                    <children>
+                        <Boangri_Weblog>
+                            <title>Boangri_Weblog</title>
+                            <sort_order>10</sort_order>
+                        </Boangri_Weblog>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+        <layout>
+            <updates>
+                <weblog>
+                    <file>weblog.xml</file>
+                </weblog>
+            </updates>
+        </layout>
+    </adminhtml>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <Boangri_Weblog before="Mage_Adminhtml">Boangri_Weblog_Adminhtml</Boangri_Weblog> 
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>  
+</config> 
