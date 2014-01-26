@@ -1,20 +1,32 @@
 <?php
 /**
- * Adminhtml controller 
- *
- * @category Cyberhull
+ * Boangri Weblog admin module
+ * 
+ * @category Boangri
  * @package Boangri_Weblog
  * @copyright Copyright (c) 2014 Cyberhull LLC (www.cyberhull.com)
  * @author Boris Gribovskiy (boris.gribovskiy@cyberhull.com)
  */
+/**
+ * Adminhtml controller 
+ * 
+ * @category Boangri
+ * @package Boangri_Weblog 
+ */
 
 class Boangri_Weblog_Adminhtml_WeblogController extends Mage_Adminhtml_Controller_action
 {
+    /**
+     * index action
+     */
     public function indexAction() {
         $this->loadLayout();
         $this->renderLayout();
     }
     
+    /**
+     * delete action
+     */
     public function deleteAction() {
         if( $this->getRequest()->getParam('id') > 0 ) {
             try {
@@ -32,7 +44,10 @@ class Boangri_Weblog_Adminhtml_WeblogController extends Mage_Adminhtml_Controlle
         }
         $this->_redirect('*/*/');
     }
-
+    
+    /**
+     * exportCsv action
+     */
     public function exportCsvAction()
     {
         $fileName   = 'blog_posts.csv';
@@ -41,7 +56,10 @@ class Boangri_Weblog_Adminhtml_WeblogController extends Mage_Adminhtml_Controlle
  
         $this->_sendUploadResponse($fileName, $content);
     }
- 
+    
+    /**
+     * exportXml action
+     */
     public function exportXmlAction()
     {
         $fileName   = 'blog_posts.xml';
@@ -50,6 +68,10 @@ class Boangri_Weblog_Adminhtml_WeblogController extends Mage_Adminhtml_Controlle
  
         $this->_sendUploadResponse($fileName, $content);
     }
+    
+    /**
+     * grid action
+     */
 // For call via AJAX
     public function gridAction()
     {
@@ -58,7 +80,10 @@ class Boangri_Weblog_Adminhtml_WeblogController extends Mage_Adminhtml_Controlle
             $this->getLayout()->createBlock('weblog/adminhtml_weblog_grid')->toHtml()
         );
     }
-
+    
+    /**
+     * new action
+     */
     public function newAction(){
         $this->loadLayout();
         $this->_addContent($this->getLayout()->createBlock('weblog/adminhtml_form'))
@@ -66,6 +91,9 @@ class Boangri_Weblog_Adminhtml_WeblogController extends Mage_Adminhtml_Controlle
         $this->renderLayout();
     }
 
+    /**
+     * edit action
+     */
     public function editAction() {
         //echo "here we are!";
         $params = $this->getRequest()->getParams();
@@ -81,6 +109,9 @@ class Boangri_Weblog_Adminhtml_WeblogController extends Mage_Adminhtml_Controlle
         $this->renderLayout();
     }
     
+    /**
+     * save action
+     */
     public function saveAction() {
         if ($data = $this->getRequest()->getPost()) {
             $id = $data['id'];
@@ -103,6 +134,9 @@ class Boangri_Weblog_Adminhtml_WeblogController extends Mage_Adminhtml_Controlle
         $this->renderLayout();
     }
 
+    /**
+     * send CSV or XML file
+     */
     protected function _sendUploadResponse($fileName, $content, $contentType='application/octet-stream')
     {
         $response = $this->getResponse();

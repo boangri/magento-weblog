@@ -1,8 +1,10 @@
 <?php
 /**
- * Config file 
- *
- * @category Cyberhull
+ * Boangri Weblog admin module
+ * 
+ * Install script. It creates a table for posts and inserts one demo row.
+ * 
+ * @category Boangri
  * @package Boangri_Weblog
  * @copyright Copyright (c) 2014 Cyberhull LLC (www.cyberhull.com)
  * @author Boris Gribovskiy (boris.gribovskiy@cyberhull.com)

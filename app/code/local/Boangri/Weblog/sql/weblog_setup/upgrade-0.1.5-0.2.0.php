@@ -1,8 +1,10 @@
 <?php
 /**
- * Config file 
+ * Boangri Weblog admin module
+ * 
+ * Yet another upgrade script.
  *
- * @category Cyberhull
+ * @category Boangri
  * @package Boangri_Weblog
  * @copyright Copyright (c) 2014 Cyberhull LLC (www.cyberhull.com)
  * @author Boris Gribovskiy (boris.gribovskiy@cyberhull.com)

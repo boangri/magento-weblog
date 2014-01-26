@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 /**
+ * Boangri Weblog admin module
+ *
  * Config file 
  *
- * @category Cyberhull
+ * @category Boangri
  * @package Boangri_Weblog
  * @copyright Copyright (c) 2014 Cyberhull LLC (www.cyberhull.com)
  * @author Boris Gribovskiy (boris.gribovskiy@cyberhull.com)

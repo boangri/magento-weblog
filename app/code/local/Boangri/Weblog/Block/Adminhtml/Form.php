@@ -1,16 +1,25 @@
 <?php
 /**
- * Form for a new post creation
- *
- * @category Cyberhull
+ * Boangri Weblog admin module
+ * 
+ * @category Boangri
  * @package Boangri_Weblog
  * @copyright Copyright (c) 2014 Cyberhull LLC (www.cyberhull.com)
  * @author Boris Gribovskiy (boris.gribovskiy@cyberhull.com)
+ */
+/**
+ * Form container
+ * 
+ * @category Boangri
+ * @package Boangri_Weblog 
  */
 
 class Boangri_Weblog_Block_Adminhtml_Form 
     extends Mage_Adminhtml_Block_Widget_Form_Container
 {
+    /**
+     * Construct
+     */
     public function __construct()
     {
         parent::__construct();
@@ -30,7 +39,12 @@ class Boangri_Weblog_Block_Adminhtml_Form
         ), -100);
         */
     }
- 
+    
+    /**
+     * Output header
+     * 
+     * @return type
+     */
     public function getHeaderText()
     {
         return Mage::helper('weblog')->__('Create new post');

@@ -1,17 +1,25 @@
 <?php
 /**
- * Tabs for forms for input of post parameters
- *
- * @category Cyberhull
+ * Boangri Weblog admin module
+ * 
+ * @category Boangri
  * @package Boangri_Weblog
  * @copyright Copyright (c) 2014 Cyberhull LLC (www.cyberhull.com)
  * @author Boris Gribovskiy (boris.gribovskiy@cyberhull.com)
+ */
+/**
+ * Tabs widget
+ * 
+ * @category Boangri
+ * @package Boangri_Weblog 
  */
 
 class Boangri_Weblog_Block_Adminhtml_Weblog_Edit_Tabs 
     extends Mage_Adminhtml_Block_Widget_Tabs
 {
- 
+    /**
+     * Constructor
+     */
     public function __construct()
     {
         parent::__construct();
@@ -19,7 +27,11 @@ class Boangri_Weblog_Block_Adminhtml_Weblog_Edit_Tabs
         $this->setDestElementId('edit_form'); // this should be same as the form id define above
         $this->setTitle(Mage::helper('weblog')->__('Post Information'));
     }
- 
+    
+    /**
+     * 
+     * @return type
+     */
     protected function _beforeToHtml()
     {
         $this->addTab('form_section', array(

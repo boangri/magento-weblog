@@ -1,7 +1,7 @@
 /**
- * Boangri Weblog  
+ * Boangri Weblog admin module
  *
- * @category Cyberhull
+ * @category Boangri
  * @package Boangri_Weblog
  * @copyright Copyright (c) 2014 Cyberhull LLC (www.cyberhull.com)
  * @author Boris Gribovskiy (boris.gribovskiy@cyberhull.com)

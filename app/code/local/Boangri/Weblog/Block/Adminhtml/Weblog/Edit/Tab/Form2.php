@@ -1,16 +1,25 @@
 <?php
 /**
- * Second form for auxiliary parameters of post 
- *
- * @category Cyberhull
+ * Boangri Weblog admin module
+ * 
+ * @category Boangri
  * @package Boangri_Weblog
  * @copyright Copyright (c) 2014 Cyberhull LLC (www.cyberhull.com)
  * @author Boris Gribovskiy (boris.gribovskiy@cyberhull.com)
  */
-
+/**
+ * Form for optional parameters
+ * 
+ * @category Boangri
+ * @package Boangri_Weblog 
+ */
 class Boangri_Weblog_Block_Adminhtml_Weblog_Edit_Tab_Form2 
     extends Mage_Adminhtml_Block_Widget_Form
 {
+    /**
+     * 
+     * @return type
+     */
     protected function _prepareForm()
     {
         $data = Mage::registry('weblog_post');

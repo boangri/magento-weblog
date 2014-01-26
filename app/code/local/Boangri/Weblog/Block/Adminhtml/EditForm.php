@@ -1,16 +1,25 @@
 <?php
 /**
- * Form for editing post 
- *
- * @category Cyberhull
+ * Boangri Weblog admin module
+ * 
+ * @category Boangri
  * @package Boangri_Weblog
  * @copyright Copyright (c) 2014 Cyberhull LLC (www.cyberhull.com)
  * @author Boris Gribovskiy (boris.gribovskiy@cyberhull.com)
+ */
+/**
+ * Form for post editing
+ * 
+ * @category Boangri
+ * @package Boangri_Weblog 
  */
 
 class Boangri_Weblog_Block_Adminhtml_EditForm 
     extends Mage_Adminhtml_Block_Widget_Form_Container
 {
+    /**
+     * Constructor
+     */
     public function __construct()
     {
         parent::__construct();
@@ -30,7 +39,12 @@ class Boangri_Weblog_Block_Adminhtml_EditForm
         ), -100);
         
     }
- 
+    
+    /**
+     * Output header
+     * 
+     * @return type
+     */
     public function getHeaderText()
     {
         return Mage::helper('weblog')->__('Edit post');

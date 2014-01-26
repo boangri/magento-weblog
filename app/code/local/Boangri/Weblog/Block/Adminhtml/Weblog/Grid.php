@@ -1,15 +1,24 @@
 <?php
 /**
- * Grid for post management
- *
- * @category Cyberhull
+ * Boangri Weblog admin module
+ * 
+ * @category Boangri
  * @package Boangri_Weblog
  * @copyright Copyright (c) 2014 Cyberhull LLC (www.cyberhull.com)
  * @author Boris Gribovskiy (boris.gribovskiy@cyberhull.com)
  */
+/**
+ * Grid widget
+ * 
+ * @category Boangri
+ * @package Boangri_Weblog 
+ */
 
 class Boangri_Weblog_Block_Adminhtml_Weblog_Grid extends Mage_Adminhtml_Block_Widget_Grid
 {
+    /**
+     * Constructor
+     */
     public function __construct()
     {
         parent::__construct();
@@ -22,14 +31,22 @@ class Boangri_Weblog_Block_Adminhtml_Weblog_Grid extends Mage_Adminhtml_Block_Wi
         $this->setUseAjax(true);
 
     }
- 
+    
+    /**
+     * 
+     * @return type 
+     */
     protected function _prepareCollection()
     {
         $collection = Mage::getModel('weblog/blogpost')->getCollection();
         $this->setCollection($collection);
         return parent::_prepareCollection();
     }
- 
+    
+    /**
+     * 
+     * @return type
+     */
     protected function _prepareColumns()
     {
         $this->addColumn('id', array(
@@ -79,16 +96,30 @@ class Boangri_Weblog_Block_Adminhtml_Weblog_Grid extends Mage_Adminhtml_Block_Wi
         return parent::_prepareColumns();
     }
     
+    /**
+     * 
+     * @param type $row
+     * @return type
+     */
     public function getRowUrl($row)
     {
         return $this->getUrl('*/*/edit', array('id' => $row->getId()));
     }
+    
     // For  AJAX
+    /**
+     * 
+     * @return type
+     */
     public function getGridUrl()
     {
         return $this->getUrl('*/*/grid', array('_current'=>true));
     }
     
+    /**
+     * 
+     * @return \Boangri_Weblog_Block_Adminhtml_Weblog_Grid
+     */
     protected function _prepareMassaction()
     {
         $this->setMassactionIdField('blogpost_id');

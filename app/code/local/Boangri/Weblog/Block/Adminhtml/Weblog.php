@@ -1,16 +1,25 @@
 <?php
 /**
- * Grid container
- *
- * @category Cyberhull
+ * Boangri Weblog admin module
+ * 
+ * @category Boangri
  * @package Boangri_Weblog
  * @copyright Copyright (c) 2014 Cyberhull LLC (www.cyberhull.com)
  * @author Boris Gribovskiy (boris.gribovskiy@cyberhull.com)
+ */
+/**
+ * Weblog block
+ * 
+ * @category Boangri
+ * @package Boangri_Weblog 
  */
 
 class Boangri_Weblog_Block_Adminhtml_Weblog 
     extends Mage_Adminhtml_Block_Widget_Grid_Container
 {
+    /**
+     * Constructor
+     */
     public function __construct()
     {
         $this->_controller = 'adminhtml_weblog';
