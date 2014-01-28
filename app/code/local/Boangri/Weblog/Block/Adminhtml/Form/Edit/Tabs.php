@@ -14,7 +14,7 @@
  * @package Boangri_Weblog 
  */
 
-class Boangri_Weblog_Block_Adminhtml_Weblog_Edit_Tabs 
+class Boangri_Weblog_Block_Adminhtml_Form_Edit_Tabs 
     extends Mage_Adminhtml_Block_Widget_Tabs
 {
     /**
