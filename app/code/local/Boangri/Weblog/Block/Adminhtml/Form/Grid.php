@@ -14,7 +14,7 @@
  * @package Boangri_Weblog 
  */
 
-class Boangri_Weblog_Block_Adminhtml_Weblog_Grid extends Mage_Adminhtml_Block_Widget_Grid
+class Boangri_Weblog_Block_Adminhtml_Form_Grid extends Mage_Adminhtml_Block_Widget_Grid
 {
     /**
      * Constructor

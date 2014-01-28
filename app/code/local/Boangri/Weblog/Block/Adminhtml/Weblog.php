@@ -22,7 +22,7 @@ class Boangri_Weblog_Block_Adminhtml_Weblog
      */
     public function __construct()
     {
-        $this->_controller = 'adminhtml_weblog';
+        $this->_controller = 'adminhtml_form';
         $this->_blockGroup = 'weblog';
         $this->_headerText = Mage::helper('weblog')->__('Post Manager');
         $this->_addButtonLabel = Mage::helper('weblog')->__('Add Post');
