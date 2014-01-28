@@ -51,7 +51,7 @@ class Boangri_Weblog_Adminhtml_WeblogController extends Mage_Adminhtml_Controlle
     public function exportCsvAction()
     {
         $fileName   = 'blog_posts.csv';
-        $content    = $this->getLayout()->createBlock('weblog/adminhtml_weblog_grid')
+        $content    = $this->getLayout()->createBlock('weblog/adminhtml_form_grid')
             ->getCsv();
  
         $this->_sendUploadResponse($fileName, $content);
@@ -63,7 +63,7 @@ class Boangri_Weblog_Adminhtml_WeblogController extends Mage_Adminhtml_Controlle
     public function exportXmlAction()
     {
         $fileName   = 'blog_posts.xml';
-        $content    = $this->getLayout()->createBlock('weblog/adminhtml_weblog_grid')
+        $content    = $this->getLayout()->createBlock('weblog/adminhtml_form_grid')
             ->getXml();
  
         $this->_sendUploadResponse($fileName, $content);
@@ -77,7 +77,7 @@ class Boangri_Weblog_Adminhtml_WeblogController extends Mage_Adminhtml_Controlle
     {
         $this->loadLayout();
         $this->getResponse()->setBody(
-            $this->getLayout()->createBlock('weblog/adminhtml_weblog_grid')->toHtml()
+            $this->getLayout()->createBlock('weblog/adminhtml_form_grid')->toHtml()
         );
     }
     
@@ -87,7 +87,7 @@ class Boangri_Weblog_Adminhtml_WeblogController extends Mage_Adminhtml_Controlle
     public function newAction(){
         $this->loadLayout();
         $this->_addContent($this->getLayout()->createBlock('weblog/adminhtml_form'))
-             ->_addLeft($this->getLayout()->createBlock('weblog/adminhtml_weblog_edit_tabs'));   
+             ->_addLeft($this->getLayout()->createBlock('weblog/adminhtml_form_edit_tabs'));   
         $this->renderLayout();
     }
 
@@ -105,7 +105,7 @@ class Boangri_Weblog_Adminhtml_WeblogController extends Mage_Adminhtml_Controlle
         //var_dump($data);
         $this->loadLayout();
         $this->_addContent($this->getLayout()->createBlock('weblog/adminhtml_editform'))
-             ->_addLeft($this->getLayout()->createBlock('weblog/adminhtml_weblog_edit_tabs'));   
+             ->_addLeft($this->getLayout()->createBlock('weblog/adminhtml_form_edit_tabs'));   
         $this->renderLayout();
     }
     
@@ -130,7 +130,7 @@ class Boangri_Weblog_Adminhtml_WeblogController extends Mage_Adminhtml_Controlle
             $blogpost->save();
         }
         $this->loadLayout();
-        $this->_addContent($this->getLayout()->createBlock('weblog/adminhtml_weblog'));
+        $this->_addContent($this->getLayout()->createBlock('weblog/adminhtml_form'));
         $this->renderLayout();
     }
 

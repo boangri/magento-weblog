@@ -118,7 +118,7 @@ class Boangri_Weblog_Block_Adminhtml_Form_Grid extends Mage_Adminhtml_Block_Widg
     
     /**
      * 
-     * @return \Boangri_Weblog_Block_Adminhtml_Weblog_Grid
+     * @return \Boangri_Weblog_Block_Adminhtml_Form_Grid
      */
     protected function _prepareMassaction()
     {
