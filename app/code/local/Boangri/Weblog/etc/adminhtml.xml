@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Weblog module
+ * 
+ * @category Boangri
+ * @package Boangri_Weblog
+ * @copyright Copyright (c) 2014 Cyberhull LLC (www.cyberhull.com)
+ * @author Boris Gribovskiy (boris.gribovskiy@cyberhull.com)
+ */
+/**
+ * Adminhtml config
+ * 
+ * @category Boangri
+ * @package Boangri_Weblog  
+ */
+ -->
+<config>
+    <menu>
+        <boangri translate="title" module="weblog">
+            <title>Boangri Modules</title>
+            <sort_order>95</sort_order>
+            <children>
+                <item2>
+                    <title>Weblog</title>
+                    <sort_order>2</sort_order>
+                    <children>
+                        <item1>
+                            <title>Add new post</title>
+                            <sort_order>2</sort_order>
+                            <action>adminhtml/weblog/new</action>
+                        </item1>
+                        <item2>
+                            <title>Manage posts</title>
+                            <sort_order>1</sort_order>
+                            <action>adminhtml/weblog/index</action>
+                        </item2>
+                    </children>
+                </item2>
+            </children>
+        </boangri>
+    </menu>
+
+    <acl>
+        <resources>
+            <all>
+                <title>Allow Everything</title>
+            </all>
+            <admin>
+                <children>
+                    <Boangri_Weblog>
+                        <title>Boangri_Weblog</title>
+                        <sort_order>10</sort_order>
+                    </Boangri_Weblog>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config> 
