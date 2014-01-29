@@ -28,18 +28,18 @@ class Boangri_Weblog_Adminhtml_WeblogController extends Mage_Adminhtml_Controlle
      * delete action
      */
     public function deleteAction() {
-        if( $this->getRequest()->getParam('id') > 0 ) {
+        $id = $this->getRequest()->getParam('id');
+        if( $id > 0 ) {
             try {
-                $model = Mage::getModel('boangri/weblog');
+                $model = Mage::getModel('weblog/blogpost');
                   
-                $model->setId($this->getRequest()->getParam('blogpost_id'))
-                    ->delete();
-                      
+                $model->setId($id)->delete();
+                  
                 Mage::getSingleton('adminhtml/session')->addSuccess(Mage::helper('adminhtml')->__('Item was successfully deleted'));
                 $this->_redirect('*/*/');
             } catch (Exception $e) {
                 Mage::getSingleton('adminhtml/session')->addError($e->getMessage());
-                $this->_redirect('*/*/edit', array('id' => $this->getRequest()->getParam('id')));
+                $this->_redirect('*/*/edit', array('id' => $id));
             }
         }
         $this->_redirect('*/*/');
@@ -129,9 +129,10 @@ class Boangri_Weblog_Adminhtml_WeblogController extends Mage_Adminhtml_Controlle
             }
             $blogpost->save();
         }
-        $this->loadLayout();
-        $this->_addContent($this->getLayout()->createBlock('weblog/adminhtml_form'));
-        $this->renderLayout();
+        $this->_redirect('*/*/');
+        //$this->loadLayout();
+        //$this->_addContent($this->getLayout()->createBlock('weblog/adminhtml_form'));
+        //$this->renderLayout();
     }
 
     /**
