@@ -107,7 +107,7 @@ class Boangri_Weblog_Block_Adminhtml_Form_Edit_Tab_Form2
           'onclick' => "",
           'onchange' => "",
           'value'  => $data['status'],
-          'values' => array('-1'=>'Please Select..','1' => 'Draft','2' => 'Published', '3' => 'Hidden'),
+          'values' => array('2'=>'Please Select..','1' => 'Draft','2' => 'Published', '3' => 'Hidden'),
           'disabled' => false,
           'readonly' => false,
           'after_element_html' => '<small></small>',
