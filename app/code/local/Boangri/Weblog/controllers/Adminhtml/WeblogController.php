@@ -95,18 +95,19 @@ class Boangri_Weblog_Adminhtml_WeblogController extends Mage_Adminhtml_Controlle
      * edit action
      */
     public function editAction() {
-        //echo "here we are!";
         $params = $this->getRequest()->getParams();
-        $blogpost = Mage::getModel('weblog/blogpost');
-        //echo("Loading the blogpost with an ID of ".$params['id']);
-        $blogpost->load($params['id']);
-        $data = $blogpost->getData();
-        Mage::register('weblog_post', $data);
-        //var_dump($data);
-        $this->loadLayout();
-        $this->_addContent($this->getLayout()->createBlock('weblog/adminhtml_editform'))
-             ->_addLeft($this->getLayout()->createBlock('weblog/adminhtml_form_edit_tabs'));   
-        $this->renderLayout();
+        try {
+            $blogpost = Mage::getModel('weblog/blogpost');
+            $blogpost->load($params['id']);
+            $data = $blogpost->getData();
+            Mage::register('weblog_post', $data);
+            $this->loadLayout();
+            $this->_addContent($this->getLayout()->createBlock('weblog/adminhtml_editform'))
+                 ->_addLeft($this->getLayout()->createBlock('weblog/adminhtml_form_edit_tabs'));   
+            $this->renderLayout();
+        } catch (Exception $e) {
+            Mage::getSingleton('adminhtml/session')->addError($e->getMessage());
+        }
     }
     
     /**
@@ -115,19 +116,24 @@ class Boangri_Weblog_Adminhtml_WeblogController extends Mage_Adminhtml_Controlle
     public function saveAction() {
         if ($data = $this->getRequest()->getPost()) {
             $id = $data['id'];
-            $blogpost = Mage::getModel('weblog/blogpost');
-            if ($id > 0) {
-                $blogpost = $blogpost->load($id);
+            try {
+                $blogpost = Mage::getModel('weblog/blogpost');
+                if ($id > 0) {
+                    $blogpost = $blogpost->load($id);
+                }
+                $blogpost->setTitle($data['title']);
+                $blogpost->setPost($data['content']);
+                $blogpost->setStatus($data['status']);
+                if ($data['date']) {
+                    $a = explode('/', $data['date']);
+                    $date = $a[2].'-'.$a[0].'-'.$a[1];
+                    $blogpost->setDate($date);
+                }
+                $blogpost->save();
+                Mage::getSingleton('adminhtml/session')->addSuccess(Mage::helper('adminhtml')->__('Item was saved'));
+            } catch (Exception $e) {
+                Mage::getSingleton('adminhtml/session')->addError($e->getMessage());
             }
-            $blogpost->setTitle($data['title']);
-            $blogpost->setPost($data['content']);
-            $blogpost->setStatus($data['status']);
-            if ($data['date']) {
-                $a = explode('/', $data['date']);
-                $date = $a[2].'-'.$a[0].'-'.$a[1];
-                $blogpost->setDate($date);
-            }
-            $blogpost->save();
         }
         $this->_redirect('*/*/');
         //$this->loadLayout();
