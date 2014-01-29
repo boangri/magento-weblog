@@ -13,7 +13,7 @@
  * @category Boangri
  * @package Boangri_Weblog 
  */
-class Boangri_Weblog_Block_Adminhtml_Weblog_Edit_Form 
+class Boangri_Weblog_Block_Adminhtml_Form_Edit_Form 
     extends Mage_Adminhtml_Block_Widget_Form
 {
     /**

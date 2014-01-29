@@ -14,7 +14,7 @@
  * @package Boangri_Weblog 
  */
 
-class Boangri_Weblog_Block_Adminhtml_Weblog_Edit_Tabs 
+class Boangri_Weblog_Block_Adminhtml_Form_Edit_Tabs 
     extends Mage_Adminhtml_Block_Widget_Tabs
 {
     /**
@@ -37,13 +37,13 @@ class Boangri_Weblog_Block_Adminhtml_Weblog_Edit_Tabs
         $this->addTab('form_section', array(
           'label'     => Mage::helper('weblog')->__('Required data'),
           'title'     => Mage::helper('weblog')->__('Required data'),
-          'content'   => $this->getLayout()->createBlock('weblog/adminhtml_weblog_edit_tab_form')->toHtml(),
+          'content'   => $this->getLayout()->createBlock('weblog/adminhtml_form_edit_tab_form')->toHtml(),
         ));
       
         $this->addTab('form_section2', array(
           'label'     => Mage::helper('weblog')->__('Optional data'),
           'title'     => Mage::helper('weblog')->__('Optional data'),
-          'content'   => $this->getLayout()->createBlock('weblog/adminhtml_weblog_edit_tab_form2')->toHtml(),
+          'content'   => $this->getLayout()->createBlock('weblog/adminhtml_form_edit_tab_form2')->toHtml(),
         ));
         // AJAX 
         

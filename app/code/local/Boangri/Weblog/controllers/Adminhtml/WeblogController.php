@@ -28,19 +28,52 @@ class Boangri_Weblog_Adminhtml_WeblogController extends Mage_Adminhtml_Controlle
      * delete action
      */
     public function deleteAction() {
-        if( $this->getRequest()->getParam('id') > 0 ) {
+        $id = $this->getRequest()->getParam('id');
+        if( $id > 0 ) {
             try {
-                $model = Mage::getModel('boangri/weblog');
+                $model = Mage::getModel('weblog/blogpost');
                   
-                $model->setId($this->getRequest()->getParam('blogpost_id'))
-                    ->delete();
-                      
+                $model->setId($id)->delete();
+                  
                 Mage::getSingleton('adminhtml/session')->addSuccess(Mage::helper('adminhtml')->__('Item was successfully deleted'));
                 $this->_redirect('*/*/');
             } catch (Exception $e) {
                 Mage::getSingleton('adminhtml/session')->addError($e->getMessage());
-                $this->_redirect('*/*/edit', array('id' => $this->getRequest()->getParam('id')));
+                $this->_redirect('*/*/edit', array('id' => $id));
             }
+        }
+        $this->_redirect('*/*/');
+    }
+    
+    /**
+     * mass delete action - delete group of selected items
+     */
+    public function massDeleteAction() {
+        $ids = $this->getRequest()->getParam('id');
+        try {
+            $model = Mage::getModel('weblog/blogpost');
+            foreach ($ids as $id) {
+                $model->setId($id)->delete();
+            }
+        } catch (Exception $e) {
+                Mage::getSingleton('adminhtml/session')->addError($e->getMessage());
+        }
+        $this->_redirect('*/*/');
+    }
+    
+    /**
+     * mass status action - change status for the group of the selected items
+     */
+    public function massStatusAction() {
+        $ids = $this->getRequest()->getParam('id');
+        $status = $this->getRequest()->getParam('status');
+        try {
+            $model = Mage::getModel('weblog/blogpost');
+            foreach ($ids as $id) {
+                $model->setId($id)->setStatus($status)->save();
+            }
+        } catch (Exception $e) {
+                Mage::getSingleton('adminhtml/session')->addError($e->getMessage());
         }
         $this->_redirect('*/*/');
     }
@@ -51,7 +84,7 @@ class Boangri_Weblog_Adminhtml_WeblogController extends Mage_Adminhtml_Controlle
     public function exportCsvAction()
     {
         $fileName   = 'blog_posts.csv';
-        $content    = $this->getLayout()->createBlock('weblog/adminhtml_weblog_grid')
+        $content    = $this->getLayout()->createBlock('weblog/adminhtml_form_grid')
             ->getCsv();
  
         $this->_sendUploadResponse($fileName, $content);
@@ -63,7 +96,7 @@ class Boangri_Weblog_Adminhtml_WeblogController extends Mage_Adminhtml_Controlle
     public function exportXmlAction()
     {
         $fileName   = 'blog_posts.xml';
-        $content    = $this->getLayout()->createBlock('weblog/adminhtml_weblog_grid')
+        $content    = $this->getLayout()->createBlock('weblog/adminhtml_form_grid')
             ->getXml();
  
         $this->_sendUploadResponse($fileName, $content);
@@ -77,7 +110,7 @@ class Boangri_Weblog_Adminhtml_WeblogController extends Mage_Adminhtml_Controlle
     {
         $this->loadLayout();
         $this->getResponse()->setBody(
-            $this->getLayout()->createBlock('weblog/adminhtml_weblog_grid')->toHtml()
+            $this->getLayout()->createBlock('weblog/adminhtml_form_grid')->toHtml()
         );
     }
     
@@ -87,7 +120,7 @@ class Boangri_Weblog_Adminhtml_WeblogController extends Mage_Adminhtml_Controlle
     public function newAction(){
         $this->loadLayout();
         $this->_addContent($this->getLayout()->createBlock('weblog/adminhtml_form'))
-             ->_addLeft($this->getLayout()->createBlock('weblog/adminhtml_weblog_edit_tabs'));   
+             ->_addLeft($this->getLayout()->createBlock('weblog/adminhtml_form_edit_tabs'));   
         $this->renderLayout();
     }
 
@@ -95,18 +128,19 @@ class Boangri_Weblog_Adminhtml_WeblogController extends Mage_Adminhtml_Controlle
      * edit action
      */
     public function editAction() {
-        //echo "here we are!";
         $params = $this->getRequest()->getParams();
-        $blogpost = Mage::getModel('weblog/blogpost');
-        //echo("Loading the blogpost with an ID of ".$params['id']);
-        $blogpost->load($params['id']);
-        $data = $blogpost->getData();
-        Mage::register('weblog_post', $data);
-        //var_dump($data);
-        $this->loadLayout();
-        $this->_addContent($this->getLayout()->createBlock('weblog/adminhtml_editform'))
-             ->_addLeft($this->getLayout()->createBlock('weblog/adminhtml_weblog_edit_tabs'));   
-        $this->renderLayout();
+        try {
+            $blogpost = Mage::getModel('weblog/blogpost');
+            $blogpost->load($params['id']);
+            $data = $blogpost->getData();
+            Mage::register('weblog_post', $data);
+            $this->loadLayout();
+            $this->_addContent($this->getLayout()->createBlock('weblog/adminhtml_editform'))
+                 ->_addLeft($this->getLayout()->createBlock('weblog/adminhtml_form_edit_tabs'));   
+            $this->renderLayout();
+        } catch (Exception $e) {
+            Mage::getSingleton('adminhtml/session')->addError($e->getMessage());
+        }
     }
     
     /**
@@ -115,23 +149,29 @@ class Boangri_Weblog_Adminhtml_WeblogController extends Mage_Adminhtml_Controlle
     public function saveAction() {
         if ($data = $this->getRequest()->getPost()) {
             $id = $data['id'];
-            $blogpost = Mage::getModel('weblog/blogpost');
-            if ($id > 0) {
-                $blogpost = $blogpost->load($id);
+            try {
+                $blogpost = Mage::getModel('weblog/blogpost');
+                if ($id > 0) {
+                    $blogpost = $blogpost->load($id);
+                }
+                $blogpost->setTitle($data['title']);
+                $blogpost->setPost($data['content']);
+                $blogpost->setStatus($data['status']);
+                if ($data['date']) {
+                    $a = explode('/', $data['date']);
+                    $date = $a[2].'-'.$a[0].'-'.$a[1];
+                    $blogpost->setDate($date);
+                }
+                $blogpost->save();
+                Mage::getSingleton('adminhtml/session')->addSuccess(Mage::helper('adminhtml')->__('Item was saved'));
+            } catch (Exception $e) {
+                Mage::getSingleton('adminhtml/session')->addError($e->getMessage());
             }
-            $blogpost->setTitle($data['title']);
-            $blogpost->setPost($data['content']);
-            $blogpost->setStatus($data['status']);
-            if ($data['date']) {
-                $a = explode('/', $data['date']);
-                $date = $a[2].'-'.$a[0].'-'.$a[1];
-                $blogpost->setDate($date);
-            }
-            $blogpost->save();
         }
-        $this->loadLayout();
-        $this->_addContent($this->getLayout()->createBlock('weblog/adminhtml_weblog'));
-        $this->renderLayout();
+        $this->_redirect('*/*/');
+        //$this->loadLayout();
+        //$this->_addContent($this->getLayout()->createBlock('weblog/adminhtml_form'));
+        //$this->renderLayout();
     }
 
     /**

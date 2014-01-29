@@ -26,18 +26,18 @@ class Boangri_Weblog_Block_Adminhtml_EditForm
                   
         $this->_objectId = 'blogpost_id';
         $this->_blockGroup = 'weblog';
-        $this->_controller = 'adminhtml_weblog';
+        $this->_controller = 'adminhtml_form';
          
         $this->_updateButton('update', 'label', Mage::helper('weblog')->__('Save'));
         
         $this->_updateButton('delete', 'label', Mage::helper('weblog')->__('Delete'));
-         
+        /* 
         $this->_addButton('saveandcontinue', array(
             'label'     => Mage::helper('adminhtml')->__('Save And Continue Edit'),
             'onclick'   => 'saveAndContinueEdit()',
             'class'     => 'save',
         ), -100);
-        
+        */
     }
     
     /**
