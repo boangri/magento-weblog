@@ -46,6 +46,39 @@ class Boangri_Weblog_Adminhtml_WeblogController extends Mage_Adminhtml_Controlle
     }
     
     /**
+     * mass delete action - delete group of selected items
+     */
+    public function massDeleteAction() {
+        $ids = $this->getRequest()->getParam('id');
+        try {
+            $model = Mage::getModel('weblog/blogpost');
+            foreach ($ids as $id) {
+                $model->setId($id)->delete();
+            }
+        } catch (Exception $e) {
+                Mage::getSingleton('adminhtml/session')->addError($e->getMessage());
+        }
+        $this->_redirect('*/*/');
+    }
+    
+    /**
+     * mass status action - change status for the group of the selected items
+     */
+    public function massStatusAction() {
+        $ids = $this->getRequest()->getParam('id');
+        $status = $this->getRequest()->getParam('status');
+        try {
+            $model = Mage::getModel('weblog/blogpost');
+            foreach ($ids as $id) {
+                $model->setId($id)->setStatus($status)->save();
+            }
+        } catch (Exception $e) {
+                Mage::getSingleton('adminhtml/session')->addError($e->getMessage());
+        }
+        $this->_redirect('*/*/');
+    }
+    
+    /**
      * exportCsv action
      */
     public function exportCsvAction()
