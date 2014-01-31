@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <tabs>
+        <boangri translate="label" module="customer">
+            <label>Boangri</label>
+            <sort_order>12000</sort_order>
+        </boangri>
+    </tabs>
+    <sections>
+        <weblog translate="label" module="weblog">
+            <label>Weblog</label>
+            <tab>boangri</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>10</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>            
+                <settings>
+                    <label>Weblog Settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <filename translate="label">
+                            <label>Export file name </label>
+                            <frontend_type>text</frontend_type>
+                            <comment><![CDATA[Enter file name (without extention, .xml or .csv).]]></comment>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </filename>
+                        <enable translate="label">
+                            <label>Enable weblog?</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>99</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                       </enable>
+                    </fields>
+                </settings>  
+                <!--           
+                <test translate="label"> 
+                    <label>Test Group</label>
+                    <sort_order>10</sort_order> 
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <patient translate="label">
+                            <label>Sign In Gate Email Template</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_email_template</source_model>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </patient>
+                    </fields>                
+                </test>
+                -->
+            </groups>
+        </weblog>        
+    </sections>
+    <default>  <!-- This needs to be placed direct inside <config> tag -->
+        <weblog>  <!-- Name of section -->
+            <settings> <!-- Name of group -->
+                <filename>blog_post</filename> <!-- Name of field -->
+                <enable>true</enable>
+            </settings>
+        </weblog>
+    </default>
+</config>
