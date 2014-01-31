@@ -52,6 +52,18 @@
                         <title>Boangri_Weblog</title>
                         <sort_order>10</sort_order>
                     </Boangri_Weblog>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <weblog translate="title" module="fav">  
+                                        <title>Weblog Section ACL</title>  
+                                        <sort_order>99</sort_order>
+                                    </weblog>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
                 </children>
             </admin>
         </resources>
