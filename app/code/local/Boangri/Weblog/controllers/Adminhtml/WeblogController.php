@@ -23,12 +23,15 @@ class Boangri_Weblog_Adminhtml_WeblogController extends Mage_Adminhtml_Controlle
     
     /**
      * get file name from system configuration 
+     * 
+     * @return string File name for export
      */
-    protected function _setFilename() {
+    protected function _getFilename() {
         $fname = Mage::getStoreConfig('weblog/settings/filename', Mage::app()->getStore());
         if($fname) {
             $this->_filename = $fname;
         }
+        return $this->_filename;
     }
     
     /**
@@ -98,8 +101,7 @@ class Boangri_Weblog_Adminhtml_WeblogController extends Mage_Adminhtml_Controlle
      */
     public function exportCsvAction()
     {
-        $this->_setFilename();
-        $fileName   = $this->_filename . '.csv';
+        $fileName   = $this->_getFilename() . '.csv';
         $content    = $this->getLayout()->createBlock('weblog/adminhtml_form_grid')
             ->getCsv();
  
@@ -111,8 +113,7 @@ class Boangri_Weblog_Adminhtml_WeblogController extends Mage_Adminhtml_Controlle
      */
     public function exportXmlAction()
     {
-        $this->_setFilename();
-        $fileName   = $this->_filename . '.xml';
+        $fileName   = $this->_getFilename() . '.xml';
         $content    = $this->getLayout()->createBlock('weblog/adminhtml_form_grid')
             ->getXml();
  
