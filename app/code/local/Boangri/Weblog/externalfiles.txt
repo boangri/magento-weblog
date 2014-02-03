@@ -15,3 +15,5 @@ app/etc/modules/Boangri_Weblog.xml
 # Adminhtml Layout Files
 app/design/adminhtml/default/default/layout/weblog.xml
 
+# Locale Files
+app/locale/ru_RU/Boangri_Weblog.csv
