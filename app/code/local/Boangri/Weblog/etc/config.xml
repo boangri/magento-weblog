@@ -63,7 +63,16 @@
                     <frontName>weblog</frontName>
                 </args>
             </weblog>
-        </routers>  
+        </routers> 
+        <translate>
+            <modules>
+                <Boangri_Weblog>
+                    <files>
+                        <default>Boangri_Weblog.csv</default>
+                    </files>
+                </Boangri_Weblog>
+            </modules>
+        </translate> 
     </frontend>
     
     <adminhtml>
@@ -125,6 +134,15 @@
             </resources>
         </acl>
         -->
+        <translate>
+            <modules>
+                <Boangri_Weblog>
+                    <files>
+                        <default>Boangri_Weblog.csv</default>
+                    </files>
+                </Boangri_Weblog>
+            </modules>
+        </translate> 
         <layout>
             <updates>
                 <weblog>
